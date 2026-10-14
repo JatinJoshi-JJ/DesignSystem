@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-preview-mode="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DesignSystem AI — The Living Design System & Chameleon Studio</title>
+  <meta name="description"
+    content="Generate harmonic color palettes, instantly re-theme living UI components, preview coordinated light & dark modes, pair typography, analyze WCAG contrast, and export production tokens.">
+
+  <!-- Editorial & System Typography: Space Grotesk, Plus Jakarta Sans, Syne, Inter, JetBrains Mono, Playfair Display, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lenis Smooth Scrolling Engine -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <!-- Lucide Icons Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="selection:bg-sky-500 selection:text-white flex flex-col justify-between">
+
+  <!-- Ambient Dynamic Lighting & Grain Layer -->
+  <div class="chameleon-backdrop">
+    <div class="aurora-node node-orb-1"></div>
+    <div class="aurora-node node-orb-2"></div>
+    <div class="aurora-node node-orb-3"></div>
+  </div>
+  <div class="film-grain"></div>
+  <div id="cursorLight" class="hidden lg:block"></div>
+
+  <!-- Announcement Landmark Bar -->
+  <div
+    class="relative z-40 bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] px-4 py-2 text-center text-xs font-medium text-[var(--text-sub)] flex items-center justify-center gap-2">
+    <span class="w-2 h-2 rounded-full animate-ping" style="background-color: var(--c-node-1);"></span>
+    <span>DesignSystem AI 3.0: <strong>Living Chameleon Engine Active</strong> — Every swatch re-themes the website
+      live.</span>
+  </div>
+
+  <!-- Responsive Navigation Header -->
+  <header class="sticky top-0 z-40 px-4 sm:px-8 py-3.5 glass-studio border-b border-[var(--border-subtle)]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 sm:gap-3.5 group focus:outline-none shrink-0">
+        <div
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl p-[1.5px] bg-gradient-to-tr from-[var(--c-node-1)] via-[var(--c-node-2)] to-[var(--c-node-3)] shadow-lg shadow-sky-500/20 shrink-0">
+          <div class="w-full h-full bg-[var(--bg-base)] rounded-2xl flex items-center justify-center transition-colors">
+            <i data-lucide="sparkles" class="w-4 h-4 sm:w-5 sm:h-5 text-sky-400 group-hover:rotate-12 transition-transform"></i>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <span
+              class="font-dyn-heading font-bold text-base sm:text-xl tracking-tight text-[var(--text-main)] whitespace-nowrap">DesignSystem
+              <span
+                class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider font-code font-bold bg-sky-500/10 border border-sky-500/30 text-sky-400">Studio</span></span>
+          </div>
+          <p class="hidden sm:block text-[11px] text-[var(--text-muted)] font-medium">The Living Design System</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-5 text-xs font-semibold text-[var(--text-sub)]">
+        <a href="#prompt-to-theme" class="hover:text-amber-400 text-sky-400 flex items-center gap-1.5 transition-colors font-bold">
+          <i data-lucide="message-square" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Prompt Studio</span>
+        </a>
+        <a href="#generator-studio" class="hover:text-[var(--text-main)] transition-colors">Palette Studio</a>
+        <a href="#gemini-vision-studio" class="hover:text-purple-400 text-sky-400 flex items-center gap-1.5 transition-colors font-bold">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Gemini Vision</span>
+        </a>
+        <a href="#chameleon-preview" class="hover:text-[var(--text-main)] transition-colors">Living Preview</a>
+        <a href="#dual-mode-lab" class="hover:text-[var(--text-main)] transition-colors">Dual Mode Lab</a>
+        <a href="#typography-studio" class="hover:text-[var(--text-main)] transition-colors">Typography</a>
+        <a href="#contrast-analyzer" class="hover:text-[var(--text-main)] transition-colors">WCAG Contrast</a>
+        <a href="#export-section" class="hover:text-[var(--text-main)] transition-colors">Export Tokens</a>
+      </nav>
+
+      <!-- Action Cluster -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+
+        <!-- Spacebar Indicator (Desktop) -->
+        <div
+          class="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] text-[11px] text-[var(--text-sub)] font-code">
+          <kbd
+            class="px-1.5 py-0.5 rounded bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[var(--text-main)] font-bold text-[10px]">SPACE</kbd>
+          <span>Shuffle</span>
+        </div>
+
+        <!-- Gemini API Key Settings Trigger -->
+        <button id="openApiKeyModalBtn" aria-label="Gemini AI Settings"
+          class="p-2 sm:p-2.5 rounded-xl glass-studio border border-[var(--border-subtle)] hover:border-purple-500/40 text-[var(--text-sub)] hover:text-purple-400 active:scale-95 transition-all relative"
+          title="Google Gemini AI Key Settings">
+          <i data-lucide="key" class="w-4 h-4 text-purple-400"></i>
+          <span id="headerKeyActiveDot" class="hidden absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-400 shadow-sm animate-pulse"></span>
+        </button>
+
+        <!-- Light/Dark Interface Theme Switcher -->
+        <button id="themeToggleBtn" aria-label="Toggle Interface Theme"
+          class="p-2 sm:p-2.5 rounded-xl glass-studio border border-[var(--border-subtle)] text-[var(--text-sub)] hover:text-[var(--text-main)] active:scale-95 transition-all">
+          <i id="themeToggleIcon" data-lucide="sun" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Main Generate Button -->
+        <button id="headerGenerateBtn" class="shimmer-chameleon-btn active:scale-95 transition-transform">
+          <span
+            class="px-3 sm:px-4 py-2 rounded-full bg-[var(--bg-base)] text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 sm:gap-2 relative z-10 hover:bg-opacity-85 transition-all">
+            <i data-lucide="wand-2" class="w-3.5 h-3.5 text-sky-400"></i>
+            <span class="hidden sm:inline">Generate Palette</span>
+            <span class="sm:hidden">Generate</span>
+          </span>
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu"
+          class="md:hidden p-2 sm:p-2.5 rounded-xl glass-studio border border-[var(--border-subtle)] text-[var(--text-sub)] hover:text-[var(--text-main)] active:scale-95 transition-all">
+          <i data-lucide="menu" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileDrawer"
+      class="hidden md:hidden pt-4 pb-2 border-t border-[var(--border-subtle)] mt-3 flex-col gap-2">
+      <a href="#prompt-to-theme"
+        class="px-3 py-2 rounded-xl text-xs font-semibold text-amber-400 hover:bg-[var(--bg-surface-elevated)] block flex items-center gap-2">
+        <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+        <span>Prompt-to-Theme Studio</span>
+      </a>
+      <a href="#gemini-vision-studio"
+        class="px-3 py-2 rounded-xl text-xs font-semibold text-purple-400 hover:bg-[var(--bg-surface-elevated)] block flex items-center gap-2">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>Gemini Vision Moodboard</span>
+      </a>
+      <a href="#generator-studio"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">Palette
+        Studio</a>
+      <a href="#chameleon-preview"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">Living
+        Preview</a>
+      <a href="#dual-mode-lab"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">Dual Mode Lab</a>
+      <a href="#typography-studio"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">Typography</a>
+      <a href="#contrast-analyzer"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">WCAG Contrast</a>
+      <a href="#export-section"
+        class="px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[var(--bg-surface-elevated)] block">Export Tokens</a>
+    </div>
+  </header>
+
+  <!-- Main Studio Workspace -->
+  <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-16">
+
+    <!-- Section 4: Hero / Product Introduction -->
+    <section id="hero" class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pt-2">
+      <div class="space-y-4 max-w-3xl">
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-sky-500/10 via-purple-500/10 to-pink-500/10 border border-sky-500/20 text-[var(--text-main)]">
+          <span class="w-2 h-2 rounded-full animate-ping" style="background-color: var(--c-node-1);"></span>
+          <span>Chameleon Architecture • Real-Time Design System Sandbox</span>
+        </div>
+
+        <h1 id="heroHeadline"
+          class="font-dyn-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[var(--text-main)] leading-[1.08] transition-all">
+          Design systems that <span class="gradient-chameleon-text">come alive.</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-[var(--text-sub)] leading-relaxed max-w-2xl">
+          Generate harmonious palettes, adapt every color for light and dark product interfaces, pair matching
+          typography, and preview your brand live across a real, working web interface.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#generator-studio"
+            class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white shadow-lg transition-transform active:scale-95 flex items-center gap-2"
+            style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+            <i data-lucide="palette" class="w-4 h-4"></i>
+            <span>Enter Palette Studio</span>
+          </a>
+          <a href="#chameleon-preview"
+            class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold glass-studio border border-[var(--border-subtle)] hover:text-[var(--text-main)] flex items-center gap-2 transition-colors">
+            <i data-lucide="layout" class="w-4 h-4 text-purple-400"></i>
+            <span>View Chameleon Preview</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Summary Widget -->
+      <div class="glass-studio p-5 rounded-3xl border border-[var(--border-subtle)] space-y-3 w-full lg:w-auto lg:min-w-[300px]">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-[var(--text-muted)] font-code font-bold uppercase">Active Mood</span>
+          <span id="heroMoodBadge"
+            class="px-2.5 py-0.5 rounded-full text-[11px] font-code font-bold bg-sky-500/15 text-sky-400">Modern
+            SaaS</span>
+        </div>
+        <div id="heroMeshStrip"
+          class="w-full h-10 rounded-xl border border-[var(--border-subtle)] shadow-inner transition-all duration-500">
+        </div>
+        <div class="flex items-center justify-between text-[11px] font-code text-[var(--text-muted)]">
+          <span id="heroFontPairingLabel">Space Grotesk + Plus Jakarta</span>
+          <span class="text-emerald-400 font-semibold flex items-center gap-1">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span>WCAG Validated</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Product Capabilities Overview -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-2.5">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-white"
+          style="background: var(--c-node-1);">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <h3 class="font-dyn-heading text-lg font-bold text-[var(--text-main)]">Living Chameleon UI</h3>
+        <p class="text-xs text-[var(--text-sub)] leading-relaxed">The entire website automatically re-themes itself with
+          the colors and gradients you generate in real time.</p>
+      </div>
+
+      <div class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-2.5">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-white"
+          style="background: var(--c-node-2);">
+          <i data-lucide="sun-moon" class="w-5 h-5"></i>
+        </div>
+        <h3 class="font-dyn-heading text-lg font-bold text-[var(--text-main)]">Dual-Mode Adaptation</h3>
+        <p class="text-xs text-[var(--text-sub)] leading-relaxed">Calculates coordinated surfaces, luminance steps, and
+          borders for daylight and night product modes.</p>
+      </div>
+
+      <div class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-2.5">
+        <div class="w-10 h-10 rounded-2xl flex items-center justify-center text-white"
+          style="background: var(--c-node-3);">
+          <i data-lucide="type" class="w-5 h-5"></i>
+        </div>
+        <h3 class="font-dyn-heading text-lg font-bold text-[var(--text-main)]">Harmonic Typography</h3>
+        <p class="text-xs text-[var(--text-sub)] leading-relaxed">Curates matching Google Font combinations that
+          complement the mood of your palette dynamically.</p>
+      </div>
+    </section>
+
+    <!-- Section 5.5: Gemini Natural Language Prompt-to-Theme Studio (Feature 2) -->
+    <section id="prompt-to-theme" class="space-y-4 scroll-mt-20">
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-5 relative overflow-hidden">
+        <!-- Ambient radial glow -->
+        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-gradient-to-tr from-amber-500/10 via-purple-500/10 to-sky-500/10 blur-3xl pointer-events-none"></div>
+
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[var(--border-subtle)] pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gradient-to-r from-amber-500/15 via-purple-500/15 to-sky-500/15 text-amber-400 border border-amber-500/30">
+                <i data-lucide="message-square" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Google Gemini 2.5 Flash • Natural Language Studio</span>
+              </span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-code font-bold uppercase tracking-wider bg-amber-500/15 text-amber-400">Feature 2</span>
+            </div>
+            <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)] mt-1.5">
+              Prompt-to-Theme Studio
+            </h2>
+            <p class="text-xs sm:text-sm text-[var(--text-sub)] mt-1">
+              Describe your brand aesthetic, product mood, or atmosphere in plain words. Gemini AI instantly generates semantic tokens, typography, and re-themes the living website.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 self-start md:self-auto">
+            <span id="promptEngineBadge" class="px-2.5 py-1 rounded-full text-[10px] font-code font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              Structured JSON Engine
+            </span>
+          </div>
+        </div>
+
+        <!-- Main Prompt Input Command Bar -->
+        <div class="space-y-3">
+          <form id="promptToThemeForm" class="relative group">
+            <div class="relative flex flex-col sm:flex-row items-stretch sm:items-center rounded-2xl glass-studio border border-[var(--border-subtle)] focus-within:border-amber-400/60 transition-all shadow-lg p-1.5 gap-2">
+              <div class="flex items-center gap-2 flex-1 pl-2 sm:pl-3">
+                <div class="text-amber-400 flex items-center justify-center shrink-0">
+                  <i data-lucide="sparkles" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </div>
+                <input type="text" id="themePromptInput"
+                  placeholder="Describe your design vibe (e.g. A luxury Swiss watchmaking brand inspired by obsidian slate and champagne gold)..."
+                  class="w-full px-1 py-2 text-xs sm:text-sm bg-transparent text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none font-medium">
+                
+                <button type="button" id="clearPromptBtn" class="hidden p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors shrink-0">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <button type="submit" id="submitPromptBtn"
+                class="px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md flex items-center justify-center gap-2 transition-transform active:scale-95 whitespace-nowrap hover:opacity-95 shrink-0"
+                style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+                <i id="submitPromptIcon" data-lucide="wand-2" class="w-4 h-4"></i>
+                <span id="submitPromptLabel">Generate Theme</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Prompt Inspiration Pills -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-[11px] text-[var(--text-muted)] font-medium">
+              <span>Click an inspiration prompt to test instantly:</span>
+              <span class="text-[10px] font-code text-amber-400 font-semibold">1-Click Synthesize</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="promptPillsContainer">
+              <!-- Rendered dynamically by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Prompt Intelligence Card -->
+        <div id="promptResultCard" class="hidden p-4 sm:p-5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border-subtle)] pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              <span class="text-xs font-bold text-[var(--text-main)]" id="activePromptTitle">Obsidian & Champagne Gold</span>
+              <span class="text-[10px] font-code px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20" id="activePromptMoodBadge">Luxury Swiss Horology</span>
+            </div>
+            <span class="text-[11px] font-code text-[var(--text-muted)]" id="activePromptTypoBadge">Playfair Display + Plus Jakarta</span>
+          </div>
+
+          <p class="text-xs text-[var(--text-sub)] italic leading-relaxed" id="activePromptRationale">
+            "Deep obsidian base surfaces highlight champagne gold branding, calibrated with high-contrast editorial typography."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Main Palette Generator Studio -->
+    <section id="generator-studio" class="space-y-4 scroll-mt-20">
+
+      <!-- Studio Header Controls -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Chameleon Swatch Studio
+            </h2>
+            <span
+              class="px-2 py-0.5 rounded-full text-[10px] font-code font-bold uppercase tracking-wider bg-sky-500/15 text-sky-400">Interactive</span>
+          </div>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)] mt-1">Enter a custom color to generate • Hover to expand •
+            Click pipette to edit color • Lock favorite nodes • Spacebar to shuffle</p>
+        </div>
+
+        <!-- Strategy & Generation Controls -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <!-- Custom Base Color Input & Generator -->
+          <div
+            class="flex items-center rounded-xl glass-studio border border-[var(--border-subtle)] p-1 gap-1.5 focus-within:border-sky-500/40 transition-colors">
+            <label for="customColorPicker"
+              class="relative flex items-center justify-center cursor-pointer p-0.5 rounded-lg overflow-hidden group"
+              title="Choose specific color">
+              <input type="color" id="customColorPicker" value="#38BDF8"
+                class="absolute -top-4 -left-4 w-12 h-12 opacity-0 cursor-pointer">
+              <span id="customColorPreview"
+                class="w-6 h-6 rounded-lg border border-white/20 shadow-sm transition-transform group-hover:scale-105 inline-block"
+                style="background-color: #38BDF8;"></span>
+            </label>
+            <input type="text" id="customColorInput" placeholder="#38BDF8" maxlength="7" value="#38BDF8"
+              class="w-20 px-1 py-1 text-xs font-code uppercase bg-transparent text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none font-bold"
+              title="Enter HEX code (e.g. #38BDF8)">
+            <button id="generateFromColorBtn" title="Generate palette from this color"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-white shadow-sm flex items-center gap-1 transition-all active:scale-95 hover:opacity-90"
+              style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+              <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+              <span>Generate</span>
+            </button>
+          </div>
+
+          <!-- Harmony Algorithm Selector -->
+          <select id="harmonySelect"
+            class="px-3 py-2 rounded-xl text-xs font-semibold glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] focus:outline-none">
+            <option value="analogous">Harmony: Analogous</option>
+            <option value="complementary">Harmony: Complementary</option>
+            <option value="triadic">Harmony: Triadic</option>
+            <option value="monochromatic">Harmony: Monochromatic</option>
+            <option value="curated">Harmony: Curated Luxe</option>
+          </select>
+
+          <!-- Add / Remove Swatch Controls -->
+          <div class="flex items-center rounded-xl glass-studio border border-[var(--border-subtle)] p-0.5">
+            <button id="removeSwatchBtn" title="Remove Color"
+              class="p-2 hover:bg-[var(--bg-surface-elevated)] rounded-lg text-[var(--text-sub)] hover:text-[var(--text-main)] transition-colors">
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+            </button>
+            <span id="swatchCountBadge" class="px-2 text-xs font-code font-bold text-[var(--text-main)]">5</span>
+            <button id="addSwatchBtn" title="Add Color"
+              class="p-2 hover:bg-[var(--bg-surface-elevated)] rounded-lg text-[var(--text-sub)] hover:text-[var(--text-main)] transition-colors">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Shuffle Button -->
+          <button id="studioShuffleBtn"
+            class="px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md flex items-center gap-1.5 transition-transform active:scale-95"
+            style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Shuffle</span>
+          </button>
+
+          <!-- Copy All Colors -->
+          <button id="copyAllHexBtn"
+            class="px-3.5 py-2 rounded-xl text-xs font-semibold glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] flex items-center gap-1.5 hover:border-sky-500/40 transition-colors">
+            <i data-lucide="copy" class="w-3.5 h-3.5 text-sky-400"></i>
+            <span>Copy All</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5-Pillar Kinetic Swatch Stage -->
+      <div id="paletteStage"
+        class="w-full min-h-[500px] sm:min-h-0 sm:h-[480px] rounded-3xl overflow-hidden glass-studio p-2.5 flex flex-col sm:flex-row gap-2 relative">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Section 6.5: Multimodal Moodboard & Image to Design System (Gemini 2.5 Flash Vision API) -->
+    <section id="gemini-vision-studio" class="space-y-6 scroll-mt-20">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gradient-to-r from-sky-500/15 via-purple-500/15 to-pink-500/15 text-sky-400 border border-sky-500/30">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Google Gemini 2.5 Flash Vision</span>
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-code font-bold uppercase tracking-wider bg-purple-500/15 text-purple-400">Feature 1</span>
+          </div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)] mt-1.5">
+            Moodboard & Image to Design System
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)] mt-1">
+            Drag & drop any photo, product, screenshot, or brand moodboard. Gemini Vision extracts 5 balanced semantic design tokens, pairs matching typography, and immediately re-themes the entire living website.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button id="visionKeyModalBtn"
+            class="px-3 py-2 rounded-xl text-xs font-semibold glass-studio border border-[var(--border-subtle)] hover:border-purple-500/40 text-[var(--text-main)] flex items-center gap-2 transition-colors"
+            title="Configure Gemini API Key">
+            <i data-lucide="key" class="w-3.5 h-3.5 text-purple-400"></i>
+            <span id="visionKeyStatusLabel">Gemini Key</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Vision Studio Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left Column: Upload / Dropzone & Sample Moodboards (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <!-- Drop Area -->
+          <div id="imageDropZone"
+            class="group relative w-full h-64 sm:h-72 rounded-3xl border-2 border-dashed border-[var(--border-subtle)] hover:border-sky-500/60 glass-studio transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer overflow-hidden">
+            
+            <input type="file" id="visionImageInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
+            
+            <!-- Default Placeholder State -->
+            <div id="dropPlaceholder" class="space-y-3 pointer-events-none transition-transform group-hover:scale-105">
+              <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center text-sky-400 glass-studio border border-sky-500/30 shadow-lg shadow-sky-500/10">
+                <i data-lucide="image-up" class="w-7 h-7"></i>
+              </div>
+              <div class="space-y-1">
+                <p class="text-sm font-bold text-[var(--text-main)]">Drop moodboard image or click to browse</p>
+                <p class="text-xs text-[var(--text-muted)]">PNG, JPG, WebP, SVG • Or paste with Ctrl+V</p>
+              </div>
+            </div>
+
+            <!-- Image Preview & Scanner Overlay (Hidden until uploaded) -->
+            <div id="dropPreviewContainer" class="hidden absolute inset-0 z-10 w-full h-full bg-black/40">
+              <img id="visionImagePreview" src="" alt="Moodboard Preview" class="w-full h-full object-cover">
+              <!-- Scanning laser effect -->
+              <div id="visionScanLine" class="hidden absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#38bdf8]"></div>
+              <!-- Floating change badge -->
+              <div class="absolute bottom-3 right-3 z-30">
+                <span class="px-3 py-1.5 rounded-xl text-[11px] font-bold glass-studio text-white shadow-lg backdrop-blur-md border border-white/20 flex items-center gap-1.5">
+                  <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                  Change Image
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sample Moodboard Presets -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-[var(--text-muted)] font-semibold uppercase tracking-wider text-[10px]">Instant Curated Moodboards:</span>
+              <span class="text-[10px] text-sky-400 font-code font-bold">1-Click Test</span>
+            </div>
+            <div class="grid grid-cols-4 gap-2" id="sampleMoodboardGrid">
+              <!-- Rendered dynamically by JavaScript with SVGs -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Extracted Design System Tokens & AI Insights (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="glass-studio p-5 sm:p-6 rounded-3xl border border-[var(--border-subtle)] space-y-4 relative overflow-hidden">
+            <!-- Ambient glow orb -->
+            <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-sky-500/10 blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border-subtle)] pb-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-white"
+                  style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h3 id="visionPaletteTitle" class="font-dyn-heading text-base font-bold text-[var(--text-main)]">
+                    Moodboard Vision Analysis
+                  </h3>
+                  <p id="visionPaletteSubtitle" class="text-xs text-[var(--text-muted)]">
+                    Select or upload an image to extract design system tokens
+                  </p>
+                </div>
+              </div>
+
+              <!-- Engine Status Badge -->
+              <span id="visionEngineBadge" class="self-start sm:self-auto px-2.5 py-1 rounded-full text-[10px] font-code font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                Chameleon Vision Engine
+              </span>
+            </div>
+
+            <!-- Extracted Semantic 5-Color Nodes Row -->
+            <div class="space-y-2">
+              <span class="text-[10px] uppercase font-code font-bold text-[var(--text-muted)] tracking-wider block">
+                Extracted Semantic Color Hierarchy
+              </span>
+              <div id="visionExtractedChips" class="grid grid-cols-5 gap-2 h-24 sm:h-28">
+                <!-- 5 Interactive Swatch Chips rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- AI Typography & Atmosphere Reasoning -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <!-- Matched Typography -->
+              <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+                <span class="text-[10px] font-code uppercase font-semibold text-[var(--text-muted)] flex items-center gap-1.5">
+                  <i data-lucide="type" class="w-3.5 h-3.5 text-purple-400"></i>
+                  <span>Matched Typography</span>
+                </span>
+                <p id="visionMatchedFontLabel" class="text-xs sm:text-sm font-bold text-[var(--text-main)]">
+                  Space Grotesk + Plus Jakarta
+                </p>
+                <p id="visionFontVibeLabel" class="text-[11px] text-[var(--text-sub)]">
+                  Calibrated to moodboard geometry
+                </p>
+              </div>
+
+              <!-- Design Atmosphere / Persona -->
+              <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+                <span class="text-[10px] font-code uppercase font-semibold text-[var(--text-muted)] flex items-center gap-1.5">
+                  <i data-lucide="palette" class="w-3.5 h-3.5 text-sky-400"></i>
+                  <span>Brand Persona & Mood</span>
+                </span>
+                <p id="visionMoodLabel" class="text-xs sm:text-sm font-bold text-[var(--text-main)]">
+                  Modern Technological SaaS
+                </p>
+                <p class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+                  <i data-lucide="shield-check" class="w-3 h-3"></i>
+                  <span>WCAG Balanced Surface Hierarchy</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- AI Design Rationale Text -->
+            <div class="p-3.5 rounded-2xl bg-[var(--bg-base)] border border-[var(--border-subtle)]">
+              <p id="visionRationaleText" class="text-xs text-[var(--text-sub)] leading-relaxed italic">
+                Upload or select any moodboard to activate Gemini Vision analysis. The engine decomposes color psychology, lighting, and texture into production-ready design tokens.
+              </p>
+            </div>
+
+            <!-- Action cluster -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <p class="text-[11px] text-[var(--text-muted)]">
+                ✨ Living dashboard below is synchronized live with this moodboard.
+              </p>
+              <button id="applyVisionToStudioBtn"
+                class="px-4 py-2 rounded-xl text-xs font-bold text-white shadow-md flex items-center gap-2 transition-transform active:scale-95"
+                style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                <span>Send to Swatch Studio</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Living Chameleon Preview (Real UI Dashboard Testbed) -->
+    <section id="chameleon-preview" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-1">
+            <i data-lucide="layout" class="w-3 h-3"></i>
+            <span>Living Chameleon Preview</span>
+          </div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Functional UI Component
+            Sandbox</h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Every button, border, badge, and metric automatically
+            reflects your active palette.</p>
+        </div>
+
+        <!-- Live Theme Status -->
+        <span class="text-xs font-code text-[var(--text-muted)] self-start sm:self-auto flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full animate-ping" style="background-color: var(--c-node-1);"></span>
+          <span>Synchronized with Tokens</span>
+        </span>
+      </div>
+
+      <!-- Simulated Real Dashboard Interface -->
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-6">
+
+        <!-- Simulated Dashboard Topbar -->
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center text-white font-bold text-xs"
+              style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+              CV
+            </div>
+            <div>
+              <h4 class="font-dyn-heading text-sm font-bold text-[var(--text-main)]">Project Horizon Analytics</h4>
+              <p class="text-[11px] text-[var(--text-muted)]">Design token validation stage</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <div class="relative">
+              <input type="text" placeholder="Search tokens..."
+                class="px-3 py-1.5 pl-8 rounded-xl text-xs bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[var(--text-main)] focus:outline-none focus:border-sky-500">
+              <i data-lucide="search" class="w-3.5 h-3.5 text-[var(--text-muted)] absolute left-2.5 top-2.5"></i>
+            </div>
+            <button id="simCtaPrimary"
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white shadow transition-transform active:scale-95"
+              style="background: var(--c-node-1);">
+              Action Button
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Column UI Testbed Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Card 1: Momentum & Progress Indicator -->
+          <div
+            class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-5 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-[var(--text-sub)]">Sprint Velocity</span>
+              <span id="simBadge1"
+                class="px-2.5 py-0.5 rounded-full text-[11px] font-code font-bold text-white shadow-sm"
+                style="background: var(--c-node-1);">+42.6%</span>
+            </div>
+
+            <div class="space-y-1">
+              <h3 class="font-dyn-heading text-3xl font-extrabold text-[var(--text-main)] font-code">$184,920</h3>
+              <p class="text-xs text-[var(--text-muted)]">Dynamic surface injection</p>
+            </div>
+
+            <div class="space-y-2">
+              <div
+                class="w-full h-2.5 rounded-full bg-[var(--bg-surface-elevated)] overflow-hidden p-0.5 border border-[var(--border-subtle)]">
+                <div id="simProgressBar" class="h-full rounded-full transition-all duration-700"
+                  style="width: 76%; background: linear-gradient(90deg, var(--c-node-1), var(--c-node-2), var(--c-node-3));">
+                </div>
+              </div>
+              <div class="flex justify-between text-[11px] font-code text-[var(--text-muted)]">
+                <span>Phase 01</span>
+                <span>Optimized</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Interactive Feature Showcase -->
+          <div
+            class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-5 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center gap-2">
+                <span id="simDotAccent" class="w-3 h-3 rounded-full animate-ping"
+                  style="background: var(--c-node-3);"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-sub)] font-code">Interactive
+                  Tier</span>
+              </div>
+              <h4 class="font-dyn-heading text-lg font-bold text-[var(--text-main)]">Kinetic Experience</h4>
+              <p class="text-xs text-[var(--text-sub)] leading-relaxed">Multi-stop gradient shaders applied dynamically
+                to interface borders and active states.</p>
+            </div>
+
+            <button id="simCtaSecondary"
+              class="w-full py-3 rounded-2xl text-xs font-bold text-white shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
+              style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+              <span>Explore Active Tokens</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Card 3: Design Token Hierarchy Inspector -->
+          <div
+            class="glass-studio p-6 rounded-3xl border border-[var(--border-subtle)] space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <h4 class="font-dyn-heading text-sm font-bold text-[var(--text-main)]">Design Token Hierarchy</h4>
+              <p class="text-xs text-[var(--text-muted)]">Mapped semantic CSS roles</p>
+            </div>
+
+            <div class="space-y-2 font-code text-xs">
+              <div
+                class="flex items-center justify-between p-2 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+                <div class="flex items-center gap-2">
+                  <span id="tokenDot0" class="w-3 h-3 rounded-full" style="background: var(--c-node-1);"></span>
+                  <span class="text-[var(--text-main)]">Primary Brand</span>
+                </div>
+                <span id="tokenHex0" class="text-[var(--text-muted)]">#38BDF8</span>
+              </div>
+              <div
+                class="flex items-center justify-between p-2 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+                <div class="flex items-center gap-2">
+                  <span id="tokenDot1" class="w-3 h-3 rounded-full" style="background: var(--c-node-2);"></span>
+                  <span class="text-[var(--text-main)]">Secondary Shade</span>
+                </div>
+                <span id="tokenHex1" class="text-[var(--text-muted)]">#818CF8</span>
+              </div>
+              <div
+                class="flex items-center justify-between p-2 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+                <div class="flex items-center gap-2">
+                  <span id="tokenDot2" class="w-3 h-3 rounded-full" style="background: var(--c-node-3);"></span>
+                  <span class="text-[var(--text-main)]">Luminescent Accent</span>
+                </div>
+                <span id="tokenHex2" class="text-[var(--text-muted)]">#C084FC</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] text-[var(--text-muted)] pt-1">
+              <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                <span>WCAG Evaluated</span>
+              </span>
+              <span id="simWcagRatio" class="font-code font-bold">7.4:1 AAA</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Dual-Mode Comparison Lab (Light vs Dark Adaptation) -->
+    <section id="dual-mode-lab" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-1">
+            <i data-lucide="sun-moon" class="w-3 h-3"></i>
+            <span>Dual-Mode Adaptation</span>
+          </div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Light vs. Dark Mode
+            Comparison</h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Observe how the identical color identity translates into
+            daylight and obsidian environments.</p>
+        </div>
+
+        <!-- Mode Comparison Switcher -->
+        <div class="flex items-center gap-1.5 p-1 rounded-2xl glass-studio border border-[var(--border-subtle)]">
+          <button id="viewSideBySideBtn"
+            class="px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-purple-600 shadow">Side by Side</button>
+          <button id="viewDarkOnlyBtn"
+            class="px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)]">Dark
+            Only</button>
+          <button id="viewLightOnlyBtn"
+            class="px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)]">Light
+            Only</button>
+        </div>
+      </div>
+
+      <!-- Comparative Canvas Grid -->
+      <div id="dualModeGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Dark Mode Specimen -->
+        <div id="specimenDark"
+          class="p-6 rounded-3xl border border-white/10 space-y-5 bg-[#090b14] text-white shadow-2xl relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
+              <span class="text-xs font-code font-bold uppercase tracking-wider text-slate-300">Obsidian Night
+                Environment</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-code font-bold bg-white/10 text-slate-200">Dark
+              Tokens</span>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-dyn-heading text-xl font-bold text-white">Next-Gen SaaS Portal</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Deep contrast surfaces designed to prevent eye fatigue
+              while preserving luminous brand accents.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] text-slate-400 block font-code">Primary Action</span>
+              <span class="font-bold text-xs text-white">Interactive Button</span>
+            </div>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold text-white shadow"
+              style="background: var(--c-node-1);">
+              Launch Console
+            </button>
+          </div>
+
+          <div class="flex justify-between items-center text-xs font-code text-slate-400 pt-2 border-t border-white/10">
+            <span>Surface: #090B14</span>
+            <span class="text-emerald-400 font-semibold">Contrast: 9.8:1 AAA</span>
+          </div>
+        </div>
+
+        <!-- Light Mode Specimen -->
+        <div id="specimenLight"
+          class="p-6 rounded-3xl border border-slate-200 space-y-5 bg-[#f8fafc] text-slate-900 shadow-xl relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              <span class="text-xs font-code font-bold uppercase tracking-wider text-slate-600">Alabaster Pearl
+                Environment</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-code font-bold bg-slate-200 text-slate-700">Light
+              Tokens</span>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-dyn-heading text-xl font-bold text-slate-900">Next-Gen SaaS Portal</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">Warm, crystal-clear background tones calibrated for
+              high-luminance daylight legibility.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[11px] text-slate-500 block font-code">Primary Action</span>
+              <span class="font-bold text-xs text-slate-900">Interactive Button</span>
+            </div>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold text-white shadow"
+              style="background: var(--c-node-1);">
+              Launch Console
+            </button>
+          </div>
+
+          <div
+            class="flex justify-between items-center text-xs font-code text-slate-500 pt-2 border-t border-slate-200">
+            <span>Surface: #F8FAFC</span>
+            <span class="text-emerald-600 font-semibold">Contrast: 8.2:1 AAA</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 9: Typography Pairing Studio -->
+    <section id="typography-studio" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-1">
+            <i data-lucide="type" class="w-3 h-3"></i>
+            <span>Curated Typography Engine</span>
+          </div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Harmonic Typography Studio
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Font combinations paired with the aesthetic emotion of
+            your chosen color palette.</p>
+        </div>
+
+        <!-- Typography Mood Quick Selector -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button data-typo-preset="modern-saas"
+            class="typo-pill px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-cyan-600 shadow">Modern
+            SaaS</button>
+          <button data-typo-preset="cyber-tech"
+            class="typo-pill px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)] glass-studio border border-[var(--border-subtle)]">Cyber
+            Tech</button>
+          <button data-typo-preset="editorial-luxury"
+            class="typo-pill px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)] glass-studio border border-[var(--border-subtle)]">Editorial
+            Luxury</button>
+          <button data-typo-preset="fintech-systems"
+            class="typo-pill px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)] glass-studio border border-[var(--border-subtle)]">Fintech
+            & Systems</button>
+        </div>
+      </div>
+
+      <!-- Typography Live Testing Card -->
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-2">
+              <span id="activeTypoVibeBadge"
+                class="px-2.5 py-1 rounded-full text-xs font-code font-bold bg-cyan-500/15 text-cyan-400">Modern SaaS
+                Architecture</span>
+            </div>
+
+            <h3 id="sampleHeadingText"
+              class="font-dyn-heading text-3xl sm:text-4xl font-bold text-[var(--text-main)] leading-tight">
+              Craft interfaces that command attention and clarity.
+            </h3>
+
+            <p id="sampleBodyText" class="text-sm sm:text-base text-[var(--text-sub)] leading-relaxed">
+              Every font pairing has been calibrated to complement the emotional weight of your color palette, balancing
+              legibility across high-density SaaS dashboards and landing pages.
+            </p>
+          </div>
+
+          <!-- Pairing Meta & Code Export Box -->
+          <div class="p-5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-4">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-[var(--text-muted)] font-code font-bold uppercase">Active Pairing Specification</span>
+              <button id="copyFontSnippetBtn"
+                class="text-xs font-semibold text-cyan-400 hover:underline flex items-center gap-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy Font Code</span>
+              </button>
+            </div>
+
+            <div class="space-y-2 text-xs font-code">
+              <div class="flex justify-between p-2 rounded-xl bg-[var(--bg-base)] border border-[var(--border-subtle)]">
+                <span class="text-[var(--text-muted)]">Heading Family:</span>
+                <span id="activeHeadingName" class="font-bold text-[var(--text-main)]">Space Grotesk</span>
+              </div>
+              <div class="flex justify-between p-2 rounded-xl bg-[var(--bg-base)] border border-[var(--border-subtle)]">
+                <span class="text-[var(--text-muted)]">Body Family:</span>
+                <span id="activeBodyName" class="font-bold text-[var(--text-main)]">Plus Jakarta Sans</span>
+              </div>
+            </div>
+
+            <pre id="fontCodeSnippet"
+              class="p-3 rounded-xl bg-[var(--bg-base)] border border-[var(--border-subtle)] text-[11px] font-code text-[var(--text-muted)] overflow-x-auto leading-relaxed">
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap');
+            </pre>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 10: Accessibility & Contrast Analyzer -->
+    <section id="contrast-analyzer" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <div
+            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-1">
+            <i data-lucide="shield-check" class="w-3 h-3"></i>
+            <span>WCAG 2.2 AA / AAA Protocol</span>
+          </div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Accessibility & Contrast
+            Analyzer</h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Real-time contrast ratio calculator evaluating
+            foreground/background combinations against WCAG thresholds.</p>
+        </div>
+
+        <span class="text-xs font-code text-[var(--text-muted)] self-start sm:self-auto">ISO 9241-392 Conformance</span>
+      </div>
+
+      <div
+        class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+        <!-- Selectors & Metrics -->
+        <div class="space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-code">Foreground
+                Color</label>
+              <select id="contrastFgSelect"
+                class="w-full px-3 py-2.5 rounded-xl text-xs font-code font-bold glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] focus:outline-none">
+                <!-- Dynamically populated from active swatches -->
+              </select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] font-code">Background
+                Surface</label>
+              <select id="contrastBgSelect"
+                class="w-full px-3 py-2.5 rounded-xl text-xs font-code font-bold glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] focus:outline-none">
+                <!-- Dynamically populated from active swatches -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Score Badges Grid -->
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="p-3 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+              <span class="text-[10px] font-code text-[var(--text-muted)] block uppercase">Contrast Ratio</span>
+              <span id="contrastRatioValue" class="font-code text-2xl font-bold text-[var(--text-main)]">7.84:1</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+              <span class="text-[10px] font-code text-[var(--text-muted)] block uppercase">Normal Text</span>
+              <span id="contrastNormalStatus"
+                class="font-code text-sm font-bold text-emerald-400 flex items-center justify-center gap-1 mt-1">
+                <i data-lucide="check" class="w-4 h-4"></i> AAA Pass
+              </span>
+            </div>
+            <div class="p-3 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+              <span class="text-[10px] font-code text-[var(--text-muted)] block uppercase">Large Headings</span>
+              <span id="contrastLargeStatus"
+                class="font-code text-sm font-bold text-emerald-400 flex items-center justify-center gap-1 mt-1">
+                <i data-lucide="check" class="w-4 h-4"></i> AAA Pass
+              </span>
+            </div>
+          </div>
+
+          <p id="contrastRecommendation" class="text-xs text-[var(--text-sub)] leading-relaxed">
+            This combination provides exceptional luminance contrast, exceeding the WCAG 2.2 Level AAA benchmark for all
+            screen densities.
+          </p>
+        </div>
+
+        <!-- Live Visual Contrast Specimen -->
+        <div id="contrastLiveCard"
+          class="h-56 rounded-3xl p-6 flex flex-col justify-between border shadow-lg transition-all"
+          style="background-color: #050816; color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-code font-bold uppercase tracking-wider px-2.5 py-1 rounded-md"
+              style="background: rgba(255,255,255,0.1);">Live Readability Sample</span>
+            <span class="font-code text-xs">Sample Preview</span>
+          </div>
+
+          <div class="space-y-1">
+            <h4 class="font-dyn-heading text-xl font-bold">Accessible Interfaces Are Universal</h4>
+            <p class="text-xs opacity-90 leading-relaxed">Ensure all users experience crisp, legible copy regardless of
+              visual acuity or screen conditions.</p>
+          </div>
+
+          <div class="flex justify-between items-center text-[11px] font-code opacity-75">
+            <span>WCAG 2.2 Compliant</span>
+            <span>AA/AAA Protocol Verified</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 11: Palette Preset Gallery -->
+    <section id="preset-gallery" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Curated Preset Library
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Expertly tuned color systems ready for immediate
+            deployment.</p>
+        </div>
+
+        <span class="text-xs font-code text-[var(--text-muted)] self-start sm:self-auto">Click to Load & Re-Theme</span>
+      </div>
+
+      <div id="presetGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Section 13: AI-Inspired Design Assistant -->
+    <section id="ai-assistant"
+      class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-4">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl flex items-center justify-center text-white"
+          style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h3 class="font-dyn-heading text-lg font-bold text-[var(--text-main)]">Design System Intelligence Co-Pilot
+          </h3>
+          <p class="text-xs text-[var(--text-muted)]">Rule-based analytical advice evaluating your current color & font
+            hierarchy</p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-2">
+        <p id="assistantAdviceText" class="text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed">
+          Evaluating palette metrics...
+        </p>
+        <div class="flex flex-wrap items-center gap-3 text-[11px] font-code text-[var(--text-muted)] pt-1">
+          <span id="assistantLuminanceSpread">Luminance Spread: Calculating</span>
+          <span>•</span>
+          <span id="assistantWarmthScore">Color Temperature: Balanced</span>
+          <span>•</span>
+          <span class="text-sky-400 font-semibold">100% Deterministic Engine</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 14: Saved Palettes and History -->
+    <section id="saved-palettes" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Saved Palettes & Favorites
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Stored safely in your browser's local memory with zero
+            server telemetry.</p>
+        </div>
+
+        <button id="saveCurrentPaletteBtn"
+          class="px-4 py-2 rounded-xl text-xs font-bold text-white shadow transition-transform active:scale-95 flex items-center gap-1.5"
+          style="background: var(--c-node-1);">
+          <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+          <span>Save Current Palette</span>
+        </button>
+      </div>
+
+      <div id="savedPalettesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Section 15: Export Your Design System -->
+    <section id="export-section" class="space-y-6 scroll-mt-20">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-4">
+        <div>
+          <h2 class="font-dyn-heading text-2xl sm:text-3xl font-bold text-[var(--text-main)]">Export Production Design
+            Tokens</h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)]">Ready-to-use token definitions in CSS Custom Properties,
+            JSON, SCSS, and Tailwind configs.</p>
+        </div>
+
+        <!-- Format Selector Tabs -->
+        <div class="flex items-center gap-1.5 p-1 rounded-2xl glass-studio border border-[var(--border-subtle)]">
+          <button data-export-format="css"
+            class="export-tab px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-sky-600 shadow">CSS
+            Tokens</button>
+          <button data-export-format="json"
+            class="export-tab px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)]">JSON</button>
+          <button data-export-format="scss"
+            class="export-tab px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)]">SCSS</button>
+          <button data-export-format="tailwind"
+            class="export-tab px-3 py-1.5 rounded-xl text-xs font-semibold text-[var(--text-sub)] hover:text-[var(--text-main)]">Tailwind</button>
+        </div>
+      </div>
+
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-4 relative">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-[var(--text-muted)] font-code font-bold uppercase" id="exportFormatTitle">CSS Custom
+            Properties Token File</span>
+          <div class="flex items-center gap-2">
+            <button id="copyExportCodeBtn"
+              class="px-3 py-1.5 rounded-xl text-xs font-semibold glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] hover:border-sky-500/40 flex items-center gap-1.5 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-sky-400"></i>
+              <span>Copy Code</span>
+            </button>
+            <button id="downloadExportFileBtn"
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white shadow flex items-center gap-1.5 transition-transform active:scale-95"
+              style="background: var(--c-node-1);">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Download Tokens</span>
+            </button>
+          </div>
+        </div>
+
+        <pre id="exportCodeBlock"
+          class="p-4 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] text-xs font-code text-[var(--text-main)] overflow-x-auto leading-relaxed max-h-80">
+/* Tokens loading... */
+        </pre>
+      </div>
+    </section>
+
+    <!-- Section 16 & 17: Workflow & Product Benefits -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Workflow -->
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-5">
+        <div class="space-y-1">
+          <h3 class="font-dyn-heading text-xl font-bold text-[var(--text-main)]">Design Workflow in 4 Steps</h3>
+          <p class="text-xs text-[var(--text-sub)]">From initial mood conception to production deployment.</p>
+        </div>
+
+        <div class="space-y-4 text-xs">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center font-code font-bold text-white shrink-0"
+              style="background: var(--c-node-1);">1</span>
+            <div>
+              <strong class="text-[var(--text-main)] block font-semibold">Generate & Shuffle:</strong>
+              <span class="text-[var(--text-sub)]">Press spacebar or select mathematical harmony algorithms (analogous,
+                triadic, etc.) to seed harmonious tones.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center font-code font-bold text-white shrink-0"
+              style="background: var(--c-node-2);">2</span>
+            <div>
+              <strong class="text-[var(--text-main)] block font-semibold">Tweak & Lock:</strong>
+              <span class="text-[var(--text-sub)]">Fine-tune individual swatches using native pickers and lock the nodes
+                you love.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center font-code font-bold text-white shrink-0"
+              style="background: var(--c-node-3);">3</span>
+            <div>
+              <strong class="text-[var(--text-main)] block font-semibold">Verify Contrast & Themes:</strong>
+              <span class="text-[var(--text-sub)]">Check both Light and Dark mode variations and inspect WCAG 2.2 AA
+                contrast ratios.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center font-code font-bold text-white shrink-0"
+              style="background: var(--c-node-4);">4</span>
+            <div>
+              <strong class="text-[var(--text-main)] block font-semibold">Export Ready Tokens:</strong>
+              <span class="text-[var(--text-sub)]">Grab clean CSS, SCSS, or Tailwind variables ready to paste directly
+                into code repositories.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits -->
+      <div class="glass-studio p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] space-y-5">
+        <div class="space-y-1">
+          <h3 class="font-dyn-heading text-xl font-bold text-[var(--text-main)]">Why Living Design Systems Win</h3>
+          <p class="text-xs text-[var(--text-sub)]">Bridging the gap between isolated colors and real digital products.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+            <strong class="text-[var(--text-main)] block font-semibold">Zero Figma Guesswork</strong>
+            <span class="text-[var(--text-sub)]">Instantly see how colors behave on buttons, cards, and text instead of
+              staring at color boxes.</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+            <strong class="text-[var(--text-main)] block font-semibold">Dual-Theme Prepared</strong>
+            <span class="text-[var(--text-sub)]">Never discover that your light mode palette looks muddy in dark mode
+              after you build it.</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+            <strong class="text-[var(--text-main)] block font-semibold">Accessibility by Default</strong>
+            <span class="text-[var(--text-sub)]">Identify contrast failures early with real-time numeric
+              calculations.</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-1">
+            <strong class="text-[var(--text-main)] block font-semibold">100% Client-Side Privacy</strong>
+            <span class="text-[var(--text-sub)]">All calculations and storage happen right in your browser. No accounts
+              or tracking.</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section 18: Frequently Asked Questions -->
+    <section id="faq" class="scroll-mt-20 py-4">
+      <div class="max-w-4xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center space-y-3">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+            <span>Knowledge Base & Support</span>
+          </div>
+          <h2 class="font-dyn-heading text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--text-sub)] max-w-xl mx-auto leading-relaxed">
+            Everything you need to know about the Chameleon Engine, custom hex generation, Gemini AI vision, and token exports.
+          </p>
+        </div>
+
+        <!-- Single Column Accordion Stack -->
+        <div class="space-y-3.5">
+          <!-- Q1 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-sky-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>How does the Living Chameleon UI re-theme the entire website?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              The studio injects active palette swatches directly into native CSS Custom Properties (<code class="font-code text-sky-400">--c-node-0</code> through <code class="font-code text-sky-400">--c-node-4</code>, background luminance, and typography). The animated mesh aurora, glass cards, buttons, badges, and borders immediately inherit these tokens via CSS cascades with 0ms reload.
+            </div>
+          </details>
+
+          <!-- Q2 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-sky-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>Can I generate a complete palette from my own custom color or HEX code?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              Yes! In the Custom Color Studio above, enter any 6-digit hex code (e.g. <code class="font-code text-sky-400">#4f46e5</code>) or use the interactive color picker. Click "Generate from Color" and the Chameleon harmonic algorithm computes an optimal 5-shade design system preserving mathematical harmony and high contrast ratios.
+            </div>
+          </details>
+
+          <!-- Q3 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-purple-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>How does Gemini Multimodal Vision extract tokens from images?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              Upload any moodboard, UI screenshot, or brand photo. Gemini 2.5 Flash analyzes lighting mood and color dominance to return 5 semantic tokens, ideal Google Fonts pairings, and brand aesthetics. If no API key is entered, an onboard HTML5 Canvas client extractor runs instantly offline.
+            </div>
+          </details>
+
+          <!-- Q4 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-amber-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>How does Natural Language Prompt-to-Theme work?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              Describe your desired brand identity in plain English (e.g., <em>"Cyberpunk neon crypto exchange"</em> or <em>"Minimalist Scandinavian furniture store"</em>). Gemini outputs structured JSON with 5 hex values, typography pairings, and harmony rules that apply instantly across the studio.
+            </div>
+          </details>
+
+          <!-- Q5 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>Are the WCAG 2.2 contrast ratings certified and accurate?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              Yes. The contrast calculator implements the exact W3C WCAG 2.2 relative luminance specification: converting sRGB values to linear luminance and calculating <code class="font-code text-sky-400">(L1 + 0.05) / (L2 + 0.05)</code>. It validates AA (4.5:1) and AAA (7:1) compliance for normal and large text in real time.
+            </div>
+          </details>
+
+          <!-- Q6 -->
+          <details class="group rounded-2xl glass-studio border border-[var(--border-subtle)] hover:border-sky-500/40 transition-all duration-200 overflow-hidden open:ring-1 open:ring-sky-500/30 open:bg-[var(--bg-surface-elevated)]">
+            <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none text-[var(--text-main)] font-semibold text-sm sm:text-base gap-4">
+              <span class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-sky-400 opacity-60 group-hover:opacity-100 group-open:scale-125 transition-all"></span>
+                <span>How do I export tokens into my production project?</span>
+              </span>
+              <div class="w-8 h-8 rounded-xl bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-sky-400 group-open:rotate-180 group-open:bg-sky-500/10 group-open:text-sky-400 transition-all flex-shrink-0">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </summary>
+            <div class="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed border-t border-[var(--border-subtle)]/50 mt-1">
+              Navigate to the Export Section above. You can switch between Tailwind CSS config (<code class="font-code text-sky-400">tailwind.config.js</code>), CSS Custom Properties (<code class="font-code text-sky-400">:root</code>), SCSS variables, or raw JSON tokens. Click "Copy to Clipboard" or "Download" for immediate integration.
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 19: Final Call to Action -->
+    <section
+      class="glass-studio p-8 sm:p-12 rounded-3xl border border-[var(--border-subtle)] text-center space-y-6 relative overflow-hidden">
+      <div class="max-w-2xl mx-auto space-y-3 relative z-10">
+        <h2 class="font-dyn-heading text-3xl sm:text-4xl font-extrabold text-[var(--text-main)]">
+          Your next design system starts with a single color.
+        </h2>
+        <p class="text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed">
+          Create, customize, validate, and export a complete digital brand identity in seconds.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
+          <button id="ctaBottomShuffle"
+            class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white shadow-lg transition-transform active:scale-95 flex items-center gap-2"
+            style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+            <i data-lucide="wand-2" class="w-4 h-4"></i>
+            <span>Shuffle New Palette</span>
+          </button>
+          <a href="#export-section"
+            class="px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold glass-studio border border-[var(--border-subtle)] hover:text-[var(--text-main)] transition-colors">
+            Export Active Tokens
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Section 20: Complete Footer in Container -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 pb-12 pt-4">
+    <footer
+      class="relative z-10 p-8 sm:p-12 rounded-3xl border border-[var(--border-subtle)] glass-studio text-xs text-[var(--text-muted)] space-y-10 overflow-hidden">
+      
+      <!-- Ambient decorative glow -->
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-gradient-to-tr from-sky-500/10 via-purple-500/10 to-transparent blur-3xl pointer-events-none"></div>
+
+      <!-- Top Row: Multi-column navigation & brand -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 relative z-10">
+        
+        <!-- Brand Info (2 columns wide on lg) -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-md"
+              style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+              CV
+            </div>
+            <div>
+              <span class="font-extrabold text-base text-[var(--text-main)] block tracking-tight">DesignSystem AI</span>
+              <span class="text-[11px] text-[var(--text-muted)] font-medium">The Living Chameleon Design Studio</span>
+            </div>
+          </div>
+          
+          <p class="text-xs text-[var(--text-sub)] leading-relaxed max-w-sm">
+            Next-generation design token engine. Create harmonic color palettes, validate WCAG 2.2 accessibility, preview live dual-mode interfaces, and export production code tokens in seconds.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Chameleon Engine Active</span>
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              <i data-lucide="shield-check" class="w-3 h-3"></i>
+              <span>WCAG 2.2 AAA Validated</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Col 2: Generative Studios -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--text-main)]">AI Studios</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#prompt-to-theme" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors flex items-center gap-1.5"><i data-lucide="message-square" class="w-3 h-3 text-amber-400"></i> Prompt-to-Theme</a></li>
+            <li><a href="#gemini-vision-studio" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3 h-3 text-purple-400"></i> Moodboard Vision</a></li>
+            <li><a href="#custom-color-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors flex items-center gap-1.5"><i data-lucide="pipette" class="w-3 h-3 text-sky-400"></i> Custom HEX Studio</a></li>
+            <li><a href="#harmony-engine" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors flex items-center gap-1.5"><i data-lucide="palette" class="w-3 h-3"></i> 5-Node Swatches</a></li>
+            <li><a href="#presets-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3"></i> Curated Presets</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Validation & Lab -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--text-main)]">Design Lab</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#contrast-lab" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Dual-Mode Contrast</a></li>
+            <li><a href="#wcag-matrix" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">WCAG 2.2 Matrix</a></li>
+            <li><a href="#typography-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Font Pairings & Scale</a></li>
+            <li><a href="#sandbox-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Living UI Sandbox</a></li>
+            <li><a href="#preview-sandbox" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Colorblind Simulator</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Export & Developers -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-[var(--text-main)]">Exports & Tokens</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#export-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Tailwind CSS Config</a></li>
+            <li><a href="#export-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">CSS Custom Properties</a></li>
+            <li><a href="#export-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">JSON Design Tokens</a></li>
+            <li><a href="#export-section" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">SCSS / SASS Variables</a></li>
+            <li><a href="#faq" class="text-[var(--text-sub)] hover:text-sky-400 transition-colors">Documentation & FAQ</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Subtle Divider -->
+      <div class="border-t border-[var(--border-subtle)]"></div>
+
+      <!-- Bottom Bar: Zero Year, strictly as requested -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 relative z-10">
+        <div class="flex flex-wrap items-center gap-2.5 text-xs text-[var(--text-sub)]">
+          <span class="font-medium text-[var(--text-main)]">CareerVerse Studio</span>
+          <span>•</span>
+          <span>The Living Design System</span>
+          <span>•</span>
+          <span>100% Client-Side Privacy</span>
+        </div>
+
+        <div class="flex items-center gap-5 text-xs text-[var(--text-muted)] font-code">
+          <span>Tap <kbd class="px-1.5 py-0.5 rounded bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] text-[var(--text-main)] font-semibold">Space</kbd> to Shuffle</span>
+          <span>•</span>
+          <a href="#hero" class="hover:text-[var(--text-main)] transition-colors flex items-center gap-1 font-sans">
+            <span>Back to top</span>
+            <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </footer>
+  </div>
+
+  <!-- Google Gemini API Key Configuration Modal -->
+  <div id="geminiKeyModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="relative w-full max-w-md rounded-3xl glass-studio border border-[var(--border-subtle)] p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl flex items-center justify-center text-white"
+            style="background: linear-gradient(135deg, #8b5cf6, #38bdf8);">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-dyn-heading text-base font-bold text-[var(--text-main)]">Google Gemini API Key</h3>
+            <p class="text-[11px] text-[var(--text-muted)]">Powers Multimodal Vision & Design System Intelligence</p>
+          </div>
+        </div>
+        <button id="closeGeminiKeyModalBtn" class="p-1.5 rounded-xl hover:bg-[var(--bg-surface-elevated)] text-[var(--text-sub)] hover:text-[var(--text-main)] transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <p class="text-xs text-[var(--text-sub)] leading-relaxed">
+          Provide your Google Gemini API key to activate <code class="font-code text-sky-400">gemini-2.5-flash</code> vision intelligence. Your key is stored <strong>locally in your browser</strong> via localStorage and never sent anywhere else.
+        </p>
+
+        <div class="space-y-1.5">
+          <label class="text-[11px] font-code uppercase font-semibold text-[var(--text-muted)]">Gemini API Key</label>
+          <div class="relative">
+            <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..."
+              class="w-full px-3.5 py-2.5 rounded-xl text-xs font-code glass-studio border border-[var(--border-subtle)] text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none focus:border-sky-500">
+            <button id="toggleApiKeyVisibilityBtn" type="button" class="absolute right-3 top-2.5 text-[var(--text-muted)] hover:text-[var(--text-main)]">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] pt-1">
+          <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer"
+            class="text-sky-400 hover:underline flex items-center gap-1 font-semibold">
+            <span>Get free API key at Google AI Studio</span>
+            <i data-lucide="external-link" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-3 pt-2 border-t border-[var(--border-subtle)]">
+        <button id="clearGeminiKeyBtn" class="px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 transition-colors">
+          Clear Key
+        </button>
+        <div class="flex items-center gap-2">
+          <button id="cancelGeminiKeyBtn" class="px-4 py-2 rounded-xl text-xs font-semibold glass-studio border border-[var(--border-subtle)] hover:text-[var(--text-main)] text-[var(--text-sub)]">
+            Cancel
+          </button>
+          <button id="saveGeminiKeyBtn" class="px-5 py-2 rounded-xl text-xs font-bold text-white shadow-md active:scale-95 transition-transform"
+            style="background: linear-gradient(135deg, var(--c-node-1), var(--c-node-2));">
+            Save & Activate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Micro-Toast Notification Dock -->
+  <div id="toastDock" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- JavaScript Chameleon Engine Core -->
+  <script src="script.js"></script>
+</body>
+
+</html>
